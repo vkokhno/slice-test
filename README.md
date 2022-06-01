@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Pizzabot (Challenged by slicelife)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This application is Pizzabot that returns a list of instructions for getting Pizzabot to the locations and delivering.
 
-In the project directory, you can run:
+## Getting started
 
-### `npm start`
+To run application you have to install [Node.js](https://nodejs.org/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```shell
+node -v
+## v16.15.0
+npm -v
+## 8.11.0
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How to run
 
-### `npm test`
+```shell
+npm i
+npm start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Open http://localhost:3000 in your browser
+```
 
-### `npm run build`
+## Аlgorithm
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**1** User provides string of coordinates that contains places to delivery (5x5 (0, 0) (1, 3) (4, 4))
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**2** String parse to array of coordinates like (getCoordinatesFromInputString) [[0, 0], [1, 3], [4, 4]]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**3** After that we create matrix of distances like (getDistanceMatrix):
 
-### `npm run eject`
+|     | X1  | X2  | X3  |
+| --- | --- | --- | --- |
+| X1  | Inf | 4   | 8   |
+| X2  | 4   | Inf | 2   |
+| X3  | 8   | 4   | Inf |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**4**: To find a route we should find a nearest point to each other (findNearestPoint)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**5**: To make a string of commands from array of point we use makeRoute method
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Testing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run test you should write:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```shell
+npm i
+npm test
+```
